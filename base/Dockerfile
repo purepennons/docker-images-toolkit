@@ -9,6 +9,8 @@ RUN apt-get update \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g yarn@${YARN_VERSION} \
-    && pip install awscli --upgrade --user \
-    && echo "export PATH=~/.local/bin:$PATH" >> ~/.bashrc \
-    && source ~/.bashrc
+    && pip install --upgrade pip
+
+RUN pip --no-cache-dir install awscli --upgrade
+
+CMD ["/bin/bash"]
